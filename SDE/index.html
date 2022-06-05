@@ -1,0 +1,123 @@
+<html>
+
+<head>
+    <style>
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            background: linear-gradient(45deg, #49a09d, #5f2c82);
+            font-family: sans-serif;
+            font-weight: 100;
+        }
+
+        button{
+            height:20px;
+            width:100px;
+            margin: -20px -50px;
+            position:relative;
+            top: 80%;
+            left:49%;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        table {
+            width: 800px;
+            border-collapse: collapse;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        th,
+        td {
+            padding: 15px;
+            background-color: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        thead {
+            background-color: #55608f;
+        }
+
+
+    </style>
+
+    <script>
+
+        function isNaN(x) {
+        return x !== x;
+        };
+
+
+        function calculate()
+        {
+            var res = 0.0;
+            for(let i=1;i<document.getElementById('table').rows.length-1;i++)
+            {
+                if(!isNaN(parseFloat(document.getElementById("input"+i).value)
+                                                                * parseFloat(document.getElementById("weight"+i).innerText)))
+                document.getElementById("score"+i).innerHTML = parseFloat(document.getElementById("input"+i).value)
+                                                                * parseFloat(document.getElementById("weight"+i).innerText);
+                res = res + parseFloat(document.getElementById("input"+i).value) 
+                                                                * parseFloat(document.getElementById("weight"+i).innerText);
+            }
+
+
+            if(!isNaN(res))
+            document.getElementById("scorex").innerHTML = res;
+            if(parseFloat(document.getElementById("scorex").innerText) > 60)
+                document.getElementById("scorex").style.backgroundColor = "red";
+
+        }
+    </script>
+
+</head>
+<body>
+<div class="container">
+    <table id = "table">
+        <thead>
+        <tr>
+            <th>People Factors</th>
+            <th>Weightage</th>
+            <th>Enter value (10)</th>
+            <th>Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Autonomy</td>
+            <td id = "weight1">0.6046</td>
+            <td><input type="text" placeholder="0-10" id="input1"/></td>
+            <td id = "score1">.........</td>
+        </tr>
+        <tr>
+            <td>Client Involvement</td>
+            <td id = "weight2">0.8293</td>
+            <td><input type="text" placeholder="0-10" id="input2"/></td>
+            <td id = "score2">.........</td>
+        </tr>
+
+        <tr>
+            <td colspan="3" style="text-align: center; vertical-align: middle;">FINAL SCORE</td>
+            <td id = "scorex">.........</td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+    <button id="calculate" onclick="calculate()">Calculate</button>
+</body>
+
+</html>
